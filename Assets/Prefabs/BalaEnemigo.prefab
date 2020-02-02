@@ -5031,7 +5031,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c56a645c55721e24fa02362f8f17f231, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  velocidad: 5
+  velocidad: 6
   sprite: {fileID: 4549831685991764359}
   lanzarD: {fileID: 8300000, guid: 91dcd233e31bf8e42822d70531472bba, type: 3}
   choque: {fileID: 8300000, guid: 190aa944eabbec040a4d85e159ceac55, type: 3}

@@ -5,6 +5,7 @@ using UnityEngine;
 public class Cultista : MonoBehaviour
 {
     public SpriteRenderer _sr;
+    public Animator anim;
 
     public float distanciaParaActivarse;
      GameObject player;
@@ -96,7 +97,7 @@ public class Cultista : MonoBehaviour
                 }
 
                 // Ataque
-                if (distanciaPlayerX <= 1.5f && distanciaPlayerY <= 0.3f)
+                if (distanciaPlayerX <= 4f && distanciaPlayerY <= 0.3f)
                 {
                     if (atacar == true)
                     {
@@ -123,8 +124,9 @@ public class Cultista : MonoBehaviour
                 if(activarMuerte == true)
                 {
                     print("muerto");
+                    anim.SetTrigger("Daño");
                     audioS.PlayOneShot(Muerte);
-                    Destroy(gameObject,1);
+                    Destroy(gameObject,0.7f);
                     activarMuerte = false;
                 }
                
@@ -144,6 +146,7 @@ public class Cultista : MonoBehaviour
     public void Ataque()
     {
          print("Ataque enemigo");
+        anim.SetTrigger("Hit");
         ataqueScript.atacando = true;
         atacar = false;
         moverse = false;
@@ -163,6 +166,7 @@ public class Cultista : MonoBehaviour
     IEnumerator DañoRecibido(float time)
     {
         moverse = false;
+        anim.SetTrigger("Daño");
         yield return new WaitForSeconds(time);
         moverse = true;
     }

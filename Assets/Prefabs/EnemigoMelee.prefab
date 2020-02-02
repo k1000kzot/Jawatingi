@@ -9555,7 +9555,7 @@ Transform:
   m_GameObject: {fileID: 9019927648527049672}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0.87, y: -2.46, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 1.3, y: 1.3, z: 1}
   m_Children:
   - {fileID: 9019927650128296914}
   - {fileID: 9019927649092333152}
@@ -9576,6 +9576,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _sr: {fileID: 9019927650128296915}
+  anim: {fileID: 1226285130}
+  distanciaParaActivarse: 8
   _offsetY: 1.2
   velocidadMovimientoX: 1.5
   velocidadMovimientoY: 1
@@ -9583,6 +9585,7 @@ MonoBehaviour:
   ataqueScript: {fileID: 9019927649092333150}
   unidad: {fileID: 9019927648527049671}
   Muerte: {fileID: 8300000, guid: 21d8e9718857d244f960a2c627bb4b79, type: 3}
+  ataque: {fileID: 0}
 --- !u!114 &9019927648527049671
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -9824,6 +9827,7 @@ GameObject:
   m_Component:
   - component: {fileID: 9019927650128296914}
   - component: {fileID: 9019927650128296915}
+  - component: {fileID: 1226285130}
   m_Layer: 9
   m_Name: Sprite
   m_TagString: Untagged
@@ -9883,9 +9887,9 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 1
-  m_Sprite: {fileID: 21300000, guid: 4e81fbe3cb3bc9f4ea219593dbe21f18, type: 3}
-  m_Color: {r: 0.9433962, g: 0.6274475, b: 0.6274475, a: 1}
-  m_FlipX: 1
+  m_Sprite: {fileID: 21300000, guid: fae53cc42e021a342a848747e88efe01, type: 3}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
   m_Size: {x: 631, y: 1590}
@@ -9894,3 +9898,22 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!95 &1226285130
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9019927650128296917}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 015ae77c1812907459d5222ab488a15a, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0

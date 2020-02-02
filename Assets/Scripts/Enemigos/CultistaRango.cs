@@ -5,8 +5,9 @@ using UnityEngine;
 public class CultistaRango : MonoBehaviour
 {
     public SpriteRenderer _sr;
-
+    public Animator anim;
     GameObject player;
+    public Transform posDaga;
     float distanciaPlayerX;
     bool activarse = false;
     bool atacar = true;
@@ -145,7 +146,7 @@ public class CultistaRango : MonoBehaviour
                 if (activarMuerte == true)
                 {
                     audioS.PlayOneShot(Muerte);
-                    Destroy(gameObject,1);
+                    Destroy(gameObject,0.5f);
                     activarMuerte = false;
                 }
 
@@ -166,7 +167,8 @@ public class CultistaRango : MonoBehaviour
     public void Ataque()
     {
          print("Ataque Rango");
-        Instantiate(bala, transform.position, Quaternion.identity);
+        anim.SetTrigger("Hit");
+        Instantiate(bala, posDaga.position, Quaternion.identity);
         atacar = false;
         moverse = false;
         StartCoroutine(ReiniciarAtaque(1, 1.5f));
@@ -183,6 +185,7 @@ public class CultistaRango : MonoBehaviour
 
     IEnumerator DañoRecibido(float time)
     {
+        anim.SetTrigger("Daño");
         yield return new WaitForSeconds(time);
         moverse = true;
     }
