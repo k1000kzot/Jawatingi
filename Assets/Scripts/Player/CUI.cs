@@ -13,9 +13,21 @@ public class CUI : MonoBehaviour
 
     public Coroutine _activeCoroutine;
 
+    public float _timer = 2f;
+    public float _currentTimer = 0;
+
     void Start()
     {
         _canvas = GetComponent<Canvas>();
+        _canvas.enabled = false;
+    }
+
+    private void Update()
+    {
+        _currentTimer += Time.deltaTime;
+
+        if (_currentTimer >= _timer && _canvas.enabled == false)
+            _canvas.enabled = true;
     }
 
     public void TurnOff()

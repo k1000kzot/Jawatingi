@@ -4,5 +4,14 @@
 EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
-  m_Scenes: []
+  m_Scenes:
+  - enabled: 1
+    path: Assets/Scenes/Inicio.unity
+    guid: d2d3a8fa4602f784888842de631e47b0
+  - enabled: 1
+    path: Assets/Scenes/CamilePrueba.unity
+    guid: 0a861d79a915e6e4f88a8d63b54af7d2
+  - enabled: 1
+    path: Assets/Scenes/Final.unity
+    guid: dc5aac64fe6b97844bb4b186302c5c03
   m_configObjects: {}

@@ -72,6 +72,7 @@ public class CStartRoutine : MonoBehaviour
 
     protected IEnumerator FadeRoutine()
     {
+        Debug.Log("Start");
 
         yield return new WaitForSeconds(2);
 
@@ -88,10 +89,6 @@ public class CStartRoutine : MonoBehaviour
             yield return null;
         }
 
-        Debug.Log("Start");
-
-        yield return new WaitForSeconds(2);
-
         elapsedTime = 0;
 
         while (elapsedTime < _fadeOutTime)
@@ -106,17 +103,52 @@ public class CStartRoutine : MonoBehaviour
             yield return null;
         }
 
-        yield return new WaitForSeconds(2);
-
         elapsedTime = 0;
+
+        yield return new WaitForSeconds(1.5f);
+
+        for (int i = 0; i <= _group.Length - 1; i++)
+        {
+            elapsedTime = 0;
+
+            while (elapsedTime < _fadeInTime)
+            {
+                elapsedTime += Time.unscaledDeltaTime;
+                float t = elapsedTime / _fadeInTime;
+
+                _group[i].alpha = t;
+                //interpolar-animar
+
+                yield return null;
+            }
+
+            Debug.Log("Start2");
+        }
 
         SetState(STATE_HOLD);
 
         //float holdTimeStamp = Time.time;
         //while (!(_fadeOutFlag && (Time.time - holdTimeStamp) > _minHoldTime))
-            //yield return null;
+        //yield return null;
 
         SetState(STATE_FADEOUT);
+
+        for (int i = 0; i <= _group.Length - 1; i++)
+        {
+            elapsedTime = 0;
+
+            while (elapsedTime < _fadeOutTime)
+            {
+                elapsedTime += Time.unscaledDeltaTime;
+                float t = elapsedTime / _fadeOutTime;
+
+                //interpolar-animar
+
+                _group[i].alpha = 1 - t;
+
+                yield return null;
+            }
+        }
 
         CTransitionManager.Inst.CreateTransition("Fade");
 
@@ -126,7 +158,7 @@ public class CStartRoutine : MonoBehaviour
 
             Debug.Log("Nigga");
         }
-        CSceneManager.Inst.LoadScreen("Mansion");
+        CSceneManager.Inst.LoadScreen("CamilePrueba");
 
         _activeCoroutine = null;
         SetState(STATE_DONE);

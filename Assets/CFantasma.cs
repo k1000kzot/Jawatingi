@@ -122,16 +122,8 @@ public class CFantasma : MonoBehaviour
             }
             else
             {
-                if (activarMuerte == true)
-                {
-                    print("muerto");
-                    audioS.PlayOneShot(Muerte);
-                    Destroy(gameObject, 1);
-                    activarMuerte = false;
-                }
-
+                StartCoroutine(DañoRecibido(0.5f));
             }
-
 
         }
         else
@@ -166,7 +158,16 @@ public class CFantasma : MonoBehaviour
     IEnumerator DañoRecibido(float time)
     {
         moverse = false;
+        _anim.SetTrigger("Hitted");
         yield return new WaitForSeconds(time);
         moverse = true;
+
+        if (activarMuerte == true)
+        {
+            print("muerto");
+            audioS.PlayOneShot(Muerte);
+            Destroy(gameObject, 1);
+            activarMuerte = false;
+        }
     }
 }
