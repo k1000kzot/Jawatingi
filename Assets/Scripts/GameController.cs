@@ -18,10 +18,7 @@ public class GameController : MonoBehaviour
 
     // Update is called once per frame
     void Update()
-    {
-        print(modoFantasmalActivo);
-
-        
+    {   
 
         if (Input.GetKeyDown(KeyCode.Escape))
         {
@@ -39,14 +36,13 @@ public class GameController : MonoBehaviour
             }
         }
     }
-
-    public void BotonSalir()
-    {
-        Application.Quit();
-    }
     public void BotonReturn()
     {
         pausaUI.SetActive(false);
         Time.timeScale = 1;
+    }
+    public void BotonExit()
+    {
+
     }
 }

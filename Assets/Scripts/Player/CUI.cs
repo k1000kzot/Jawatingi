@@ -35,6 +35,4 @@ public class CUI : MonoBehaviour
             _hearths[i].enabled = true;
         }
     }
-
-   
 }

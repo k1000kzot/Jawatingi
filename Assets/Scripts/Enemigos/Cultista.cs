@@ -4,14 +4,19 @@ using UnityEngine;
 
 public class Cultista : MonoBehaviour
 {
-     
+    public SpriteRenderer _sr; 
+
+
      GameObject player;
      float distanciaPlayerX;
      bool activarse = true;
      bool atacar = true;
      bool moverse = true;
-     bool activarMuerte = true; 
-    
+     bool activarMuerte = true;
+
+    public float _offsetY;
+
+
     float distanciaPlayerY;
 
     public float velocidadMovimientoX;
@@ -24,6 +29,9 @@ public class Cultista : MonoBehaviour
     public AtaqueEnemigo ataqueScript;
     public UnidadEnemigo unidad;
 
+    AudioSource audioS;
+    public AudioClip Muerte;
+
     float escalaX;
     // Start is called before the first frame update
     void Start()
@@ -33,6 +41,8 @@ public class Cultista : MonoBehaviour
 
         velocidadInicialX = velocidadMovimientoX;
         velocidadInicialY = velocidadMovimientoY;
+
+        audioS = gameObject.GetComponent<AudioSource>();
     }
 
     // Update is called once per frame
@@ -42,6 +52,11 @@ public class Cultista : MonoBehaviour
         // print(Mathf.Abs(player.transform.position.x - transform.position.x));
         distanciaPlayerX = Mathf.Abs(player.transform.position.x - transform.position.x);
         distanciaPlayerY = Mathf.Abs(player.transform.position.y - transform.position.y);
+
+        if (player.transform.position.y - _offsetY <= this.transform.position.y)
+            _sr.sortingOrder = -1;
+        else
+            _sr.sortingOrder = 1;
 
         if (activarse == true)
         {
@@ -107,7 +122,8 @@ public class Cultista : MonoBehaviour
                 if(activarMuerte == true)
                 {
                     print("muerto");
-                    Destroy(gameObject);
+                    audioS.PlayOneShot(Muerte);
+                    Destroy(gameObject,1);
                     activarMuerte = false;
                 }
                

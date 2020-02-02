@@ -15,6 +15,7 @@ public class MainCamera : MonoBehaviour
     public GameObject cameraFantasma;
     bool camerasBool = true;
     bool cambioCameras = true;
+    public GameObject interfaceFantasmal;
 
     public void FixedUpdate()
     {
@@ -26,6 +27,7 @@ public class MainCamera : MonoBehaviour
             {
                 CambiarCamara(camerasBool = !camerasBool);
                 cambioCameras = false;
+                interfaceFantasmal.SetActive(!interfaceFantasmal.activeInHierarchy);
                 StartCoroutine(ReinicioCambio(0.5f));
             }
             
@@ -54,6 +56,10 @@ public class MainCamera : MonoBehaviour
             cameraNormal.SetActive(normal);
             cameraFantasma.SetActive(!normal);
         GameController.modoFantasmalActivo = !GameController.modoFantasmalActivo;
+
+
+
+
     }
 
 

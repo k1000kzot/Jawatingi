@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class CultistaRango : MonoBehaviour
 {
+    public SpriteRenderer _sr;
+
     GameObject player;
     float distanciaPlayerX;
     bool activarse = true;
@@ -13,6 +15,8 @@ public class CultistaRango : MonoBehaviour
     bool escapando;
 
     float distanciaPlayerY;
+
+    public float _offsetY;
 
     public float distanciaAtaque;
 
@@ -24,6 +28,8 @@ public class CultistaRango : MonoBehaviour
     public AtaqueEnemigo ataqueScript;
     public UnidadEnemigo unidad;
 
+    AudioSource audioS;
+    public AudioClip Muerte;
     float escalaX;
     // Start is called before the first frame update
     void Start()
@@ -31,7 +37,7 @@ public class CultistaRango : MonoBehaviour
         player = GameObject.FindGameObjectWithTag("Player");
         escalaX = gameObject.transform.localScale.x;
 
-
+        audioS = gameObject.GetComponent<AudioSource>();
     }
 
     // Update is called once per frame
@@ -42,6 +48,10 @@ public class CultistaRango : MonoBehaviour
         distanciaPlayerX = Mathf.Abs(player.transform.position.x - transform.position.x);
         distanciaPlayerY = Mathf.Abs(player.transform.position.y - transform.position.y);
 
+        if (player.transform.position.y - _offsetY <= this.transform.position.y)
+            _sr.sortingOrder = -1;
+        else
+            _sr.sortingOrder = 1;
 
         if (activarse == true)
         {
@@ -130,7 +140,8 @@ public class CultistaRango : MonoBehaviour
             {
                 if (activarMuerte == true)
                 {
-                    Destroy(gameObject);
+                    audioS.PlayOneShot(Muerte);
+                    Destroy(gameObject,1);
                     activarMuerte = false;
                 }
 
