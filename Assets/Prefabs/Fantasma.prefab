@@ -9744,7 +9744,7 @@ MonoBehaviour:
   ataqueScript: {fileID: 4202283899831962791}
   unidad: {fileID: 4202283899300167998}
   Muerte: {fileID: 8300000, guid: 9ad62ec4dd066f947b4c4a55db6f7532, type: 3}
-  ataque: {fileID: 0}
+  ataque: {fileID: 8300000, guid: 71d540b9dc8e4d54e99d911ae0db3d1a, type: 3}
 --- !u!1 &4202283899831962778
 GameObject:
   m_ObjectHideFlags: 0

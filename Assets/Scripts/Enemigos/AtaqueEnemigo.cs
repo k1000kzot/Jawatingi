@@ -7,7 +7,7 @@ public class AtaqueEnemigo : MonoBehaviour
 
     public bool atacando;
     bool jugadorEnRango;
-
+    
     public int _dmg;
     // Start is called before the first frame update
     void Start()
