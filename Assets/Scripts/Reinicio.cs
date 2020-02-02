@@ -18,6 +18,7 @@ public class Reinicio : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.R))
         {
             BotonRestart();
+           
         }
             
     }
