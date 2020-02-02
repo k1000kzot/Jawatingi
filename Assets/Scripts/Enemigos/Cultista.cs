@@ -4,12 +4,12 @@ using UnityEngine;
 
 public class Cultista : MonoBehaviour
 {
-    public SpriteRenderer _sr; 
+    public SpriteRenderer _sr;
 
-
+    public float distanciaParaActivarse;
      GameObject player;
      float distanciaPlayerX;
-     bool activarse = true;
+     bool activarse = false;
      bool atacar = true;
      bool moverse = true;
      bool activarMuerte = true;
@@ -129,9 +129,16 @@ public class Cultista : MonoBehaviour
                 }
                
             }
-                
 
-        }        
+
+        }
+        else
+        {
+            if(distanciaPlayerX <= distanciaParaActivarse)
+            {
+                activarse = true;
+            }
+        }       
     }
 
     public void Ataque()

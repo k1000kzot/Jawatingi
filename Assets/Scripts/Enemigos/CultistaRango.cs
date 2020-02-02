@@ -8,14 +8,14 @@ public class CultistaRango : MonoBehaviour
 
     GameObject player;
     float distanciaPlayerX;
-    bool activarse = true;
+    bool activarse = false;
     bool atacar = true;
     bool moverse = true;
     bool activarMuerte = true;
     bool escapando;
 
     float distanciaPlayerY;
-
+    public float distanciaParaActivarse;
     public float _offsetY;
 
     public float distanciaAtaque;
@@ -52,6 +52,9 @@ public class CultistaRango : MonoBehaviour
             _sr.sortingOrder = -1;
         else
             _sr.sortingOrder = 1;
+
+
+
 
         if (activarse == true)
         {
@@ -149,6 +152,14 @@ public class CultistaRango : MonoBehaviour
 
 
         }
+        else
+        {
+            if(distanciaPlayerX <= distanciaParaActivarse)
+            {
+                activarse = true;
+            }
+        }
+
     }
 
     public void Ataque()

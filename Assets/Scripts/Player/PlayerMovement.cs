@@ -48,6 +48,10 @@ public class PlayerMovement : MonoBehaviour, IPlayerDamagable
 
     public Coroutine _activeCoroutine;
 
+    public GameObject botella;
+    public Transform posicionBotella;
+    public Transform posicionBotella_negativo;
+
     public AudioSource audioPlayer;
     public AudioSource audioCaminar;
     public AudioClip caminarPlayer;
@@ -55,6 +59,7 @@ public class PlayerMovement : MonoBehaviour, IPlayerDamagable
     bool activarCaminarSonido = true;
 
     public Image fadeHabilidadL;
+    public Image fadeHabilidadBotella;
 
     private void Awake()
     {
@@ -66,6 +71,7 @@ public class PlayerMovement : MonoBehaviour, IPlayerDamagable
         _highAtackL.enabled = false;
 
         _currentCooldownTimer = 0;
+        _currentCooldownTimerRange = 0;
     }
 
     public void SetState(int aState)
@@ -84,13 +90,13 @@ public class PlayerMovement : MonoBehaviour, IPlayerDamagable
     }
     void Update()
     {
-        Debug.Log(_currentCooldownTimerRange);
+        //Debug.Log(_currentCooldownTimerRange);
 
         if (hpmg.HasHP() == false)
             Dead();
 
         float x = Input.GetAxis("Horizontal");
-        float y = Input.GetAxis("Vertical");    
+        float y = Input.GetAxis("Vertical");
         float xRaw = Input.GetAxisRaw("Horizontal");
         float yRaw = Input.GetAxisRaw("Vertical");
         Vector2 dir = new Vector2(xRaw, yRaw);
@@ -100,12 +106,13 @@ public class PlayerMovement : MonoBehaviour, IPlayerDamagable
 
         //Coldown Habilidades
         _currentCooldownTimer -= Time.deltaTime;
-        _currentCooldownTimerRange-= Time.deltaTime;
+        _currentCooldownTimerRange -= Time.deltaTime;
         fadeHabilidadL.fillAmount = _currentCooldownTimer / _highAttackCooldown;
+        fadeHabilidadBotella.fillAmount = _currentCooldownTimerRange / _rangeAttackCooldown;
 
         if (x > 0 || x < 0 || y > 0 || y < 0)
         {
-            if(activarCaminarSonido == true)
+            if (activarCaminarSonido == true)
             {
                 audioCaminar.Play();
                 activarCaminarSonido = false;
@@ -151,7 +158,7 @@ public class PlayerMovement : MonoBehaviour, IPlayerDamagable
 
             }
 
-                if (Input.GetKeyDown(KeyCode.K))
+            if (Input.GetKeyDown(KeyCode.J))
             {
                 AttackLow();
                 audioPlayer.PlayOneShot(golpeClip);
@@ -162,7 +169,7 @@ public class PlayerMovement : MonoBehaviour, IPlayerDamagable
                 AttackHigh();
             }
 
-            if (Input.GetKeyDown(KeyCode.P))
+            if (Input.GetKeyDown(KeyCode.K))
             {
                 AttackRange();
             }
@@ -185,8 +192,30 @@ public class PlayerMovement : MonoBehaviour, IPlayerDamagable
 
     private void AttackRange()
     {
-        if(_atacking == false && _currentCooldownTimerRange <= 0)
+        if (_atacking == false && _currentCooldownTimerRange <= 0)
+        {
             _activeCoroutine = StartCoroutine(RangeAtackRoutine());
+            StartCoroutine(InstanciarBotella(0.7f));
+        }
+            
+            
+    }
+
+    private IEnumerator InstanciarBotella(float delay)
+    {
+        yield return new WaitForSeconds(delay);
+
+       
+        if(sp.flipX == true)
+        {
+            GameObject bot = Instantiate(botella, posicionBotella_negativo.position, Quaternion.identity);
+            bot.GetComponent<BotellaAtaque>().velocidad *= -1;
+        }
+        else
+        {
+            Instantiate(botella, posicionBotella.position, Quaternion.identity);
+        }
+        yield return null;
     }
     private IEnumerator RangeAtackRoutine()
     {
@@ -194,7 +223,7 @@ public class PlayerMovement : MonoBehaviour, IPlayerDamagable
         _atacking = true;
         rb.velocity = Vector2.zero;
         SetState(STATE_INMOVIL);
-
+        
         yield return new WaitForSeconds(_rangeAttackTimer);
 
         SetState(STATE_NORMAL);

@@ -7,10 +7,10 @@ public class CFantasma : MonoBehaviour
     public SpriteRenderer _sr;
     public Animator _anim;
 
-
+    public float distanciaParaActivarse;
     GameObject player;
     float distanciaPlayerX;
-    bool activarse = true;
+    bool activarse = false;
     bool atacar = true;
     bool moverse = true;
     bool activarMuerte = true;
@@ -133,6 +133,13 @@ public class CFantasma : MonoBehaviour
             }
 
 
+        }
+        else
+        {
+            if(distanciaPlayerX <= distanciaParaActivarse)
+            {
+                activarse = true;
+            }
         }
     }
 
