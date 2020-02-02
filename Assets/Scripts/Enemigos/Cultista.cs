@@ -31,6 +31,7 @@ public class Cultista : MonoBehaviour
 
     AudioSource audioS;
     public AudioClip Muerte;
+    public AudioClip ataque;
 
     float escalaX;
     // Start is called before the first frame update
@@ -138,7 +139,8 @@ public class Cultista : MonoBehaviour
          print("Ataque enemigo");
         ataqueScript.atacando = true;
         atacar = false;
-        moverse = false;        
+        moverse = false;
+        audioS.PlayOneShot(ataque);
         StartCoroutine(ReiniciarAtaque(1,1.5f));
     }
 
