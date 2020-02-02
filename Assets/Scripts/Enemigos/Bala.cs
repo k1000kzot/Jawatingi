@@ -5,10 +5,15 @@ using UnityEngine;
 public class Bala : MonoBehaviour
 {
     public float velocidad;
-
+    public GameObject sprite;
+    AudioSource audioS;
+    public AudioClip lanzarD;
+    public AudioClip choque;
     // Start is called before the first frame update
     void Start()
     {
+        audioS = gameObject.GetComponent<AudioSource>();
+        audioS.PlayOneShot(lanzarD);
         Destroy(gameObject, 8);
     }
 
@@ -22,9 +27,12 @@ public class Bala : MonoBehaviour
     {
         if (collision.gameObject.tag == "Player")
         {
-            print("Daño bala");
+            audioS.PlayOneShot(choque);
+           
             //GetComponent<SpriteRenderer>().enabled = false;
-            Destroy(gameObject);
+            GetComponent<BoxCollider2D>().enabled = false;
+            sprite.SetActive(false);
+            Destroy(gameObject,0.5f);
         }
     }
 

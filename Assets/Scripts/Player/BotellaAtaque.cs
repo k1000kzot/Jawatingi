@@ -6,7 +6,7 @@ public class BotellaAtaque : MonoBehaviour
 {
     public int _dmg;
     public float velocidad;
-
+    public GameObject esteticos;
     AudioSource audioS;
     public AudioClip botellaRompe;
     public AudioClip lanzarAudio;
@@ -40,7 +40,7 @@ public class BotellaAtaque : MonoBehaviour
                         audioS.PlayOneShot(botellaRompe);
                         //Animacion Botella
                         this.enabled = false;
-                        gameObject.GetComponent<SpriteRenderer>().enabled = false;
+                        esteticos.SetActive(false);
                         Destroy(gameObject, 1);
                     }
 
@@ -63,7 +63,7 @@ public class BotellaAtaque : MonoBehaviour
                         (objPlayer as IEnemyDamagable).OnHit(_dmg, 1);
                         audioS.PlayOneShot(botellaRompe);
                         this.enabled = false;
-                        gameObject.GetComponent<SpriteRenderer>().enabled = false;
+                        esteticos.SetActive(false);
                         Destroy(gameObject, 1);
                     }
                 }
