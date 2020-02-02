@@ -38,6 +38,9 @@ public class PlayerMovement : MonoBehaviour, IPlayerDamagable
     public float _highAttackTimer;
     public float _highAttackCooldown;
     private float _currentCooldownTimer;
+    public float _rangeAttackTimer;
+    public float _rangeAttackCooldown;
+    private float _currentCooldownTimerRange;
 
     private bool _lastFrameFlip = false;
 
@@ -81,6 +84,8 @@ public class PlayerMovement : MonoBehaviour, IPlayerDamagable
     }
     void Update()
     {
+        Debug.Log(_currentCooldownTimerRange);
+
         if (hpmg.HasHP() == false)
             Dead();
 
@@ -95,6 +100,7 @@ public class PlayerMovement : MonoBehaviour, IPlayerDamagable
 
         //Coldown Habilidades
         _currentCooldownTimer -= Time.deltaTime;
+        _currentCooldownTimerRange-= Time.deltaTime;
         fadeHabilidadL.fillAmount = _currentCooldownTimer / _highAttackCooldown;
 
         if (x > 0 || x < 0 || y > 0 || y < 0)
@@ -156,6 +162,10 @@ public class PlayerMovement : MonoBehaviour, IPlayerDamagable
                 AttackHigh();
             }
 
+            if (Input.GetKeyDown(KeyCode.P))
+            {
+                AttackRange();
+            }
         }
     }
 
@@ -171,6 +181,28 @@ public class PlayerMovement : MonoBehaviour, IPlayerDamagable
     {
         if (_atacking == false)
             _activeCoroutine = StartCoroutine(AtackRoutine());
+    }
+
+    private void AttackRange()
+    {
+        if(_atacking == false && _currentCooldownTimerRange <= 0)
+            _activeCoroutine = StartCoroutine(RangeAtackRoutine());
+    }
+    private IEnumerator RangeAtackRoutine()
+    {
+        _anim.SetTrigger("HitShoot");
+        _atacking = true;
+        rb.velocity = Vector2.zero;
+        SetState(STATE_INMOVIL);
+
+        yield return new WaitForSeconds(_rangeAttackTimer);
+
+        SetState(STATE_NORMAL);
+
+        _atacking = false;
+        _currentCooldownTimerRange = _rangeAttackCooldown;
+
+        yield return null;
     }
     private void AttackHigh()
     {
@@ -205,7 +237,7 @@ public class PlayerMovement : MonoBehaviour, IPlayerDamagable
 
         yield return null;
     }
-        private IEnumerator AtackRoutine()
+    private IEnumerator AtackRoutine()
     {
         _anim.SetTrigger("Hit");
         _atacking = true;

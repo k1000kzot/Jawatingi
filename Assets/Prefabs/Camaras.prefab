@@ -50,6 +50,7 @@ MonoBehaviour:
   _moveTime: 1
   cameraNormal: {fileID: 4403778996088779452}
   cameraFantasma: {fileID: 4403778996407112442}
+  interfaceFantasmal: {fileID: 0}
 --- !u!1 &4403778996088779452
 GameObject:
   m_ObjectHideFlags: 0

@@ -9575,6 +9575,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4d7facd2d073e4a48abac80524c40528, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _sr: {fileID: 9019927650128296915}
+  _offsetY: 1.2
   velocidadMovimientoX: 1.5
   velocidadMovimientoY: 1
   collAtaque: {fileID: 9019927649092333153}
