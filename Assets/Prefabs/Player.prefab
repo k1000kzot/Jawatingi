@@ -408,8 +408,8 @@ MonoBehaviour:
   _highAtackL: {fileID: 994060443}
   hpmg: {fileID: 7029691234301866049}
   _state: 0
-  _xSpeed: 5.7
-  _ySpeed: 3.5
+  _xSpeed: 5.6
+  _ySpeed: 3.2
   _canMove: 1
   _collisionTimer: 0.25
   _highCollisionTimer: 0.5

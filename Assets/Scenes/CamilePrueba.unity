@@ -744,10 +744,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 1382614307, guid: 92f0eacc2684ae64384f4753c6c72513, type: 3}
-      propertyPath: Loop
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 4202283899300167985, guid: 92f0eacc2684ae64384f4753c6c72513,
         type: 3}
       propertyPath: m_Name
@@ -1808,11 +1804,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: EnemigoRango
       objectReference: {fileID: 0}
-    - target: {fileID: 4333322475862206592, guid: 2dbb27df21f20664491fbb8ed0d505ce,
-        type: 3}
-      propertyPath: m_IsActive
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 4333322475862206606, guid: 2dbb27df21f20664491fbb8ed0d505ce,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -1867,16 +1858,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4333322476370571418, guid: 2dbb27df21f20664491fbb8ed0d505ce,
-        type: 3}
-      propertyPath: m_LocalPosition.y
-      value: -1.04
-      objectReference: {fileID: 0}
-    - target: {fileID: 8368222351993821450, guid: 2dbb27df21f20664491fbb8ed0d505ce,
-        type: 3}
-      propertyPath: distanciaParaActivarse
-      value: 7
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 2dbb27df21f20664491fbb8ed0d505ce, type: 3}
@@ -3400,7 +3381,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1237737220
 RectTransform:
   m_ObjectHideFlags: 0
@@ -6494,16 +6475,6 @@ PrefabInstance:
       propertyPath: fadeHabilidadBotella
       value: 
       objectReference: {fileID: 1879136199}
-    - target: {fileID: 7029691234301866048, guid: be83f360f695a9d45b99ef00a223050b,
-        type: 3}
-      propertyPath: _xSpeed
-      value: 5.6
-      objectReference: {fileID: 0}
-    - target: {fileID: 7029691234301866048, guid: be83f360f695a9d45b99ef00a223050b,
-        type: 3}
-      propertyPath: _ySpeed
-      value: 3.2
-      objectReference: {fileID: 0}
     - target: {fileID: 7029691234301866049, guid: be83f360f695a9d45b99ef00a223050b,
         type: 3}
       propertyPath: _hearths.Array.data[0]
