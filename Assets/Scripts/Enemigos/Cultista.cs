@@ -1,0 +1,144 @@
+﻿using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+
+public class Cultista : MonoBehaviour
+{
+     
+     GameObject player;
+     float distanciaPlayerX;
+     bool activarse = true;
+     bool atacar = true;
+     bool moverse = true;
+     bool activarMuerte = true; 
+    
+    float distanciaPlayerY;
+
+    public float velocidadMovimientoX;
+    public float velocidadMovimientoY;
+
+    float velocidadInicialX;
+    float velocidadInicialY;
+
+    public BoxCollider2D collAtaque;
+    public AtaqueEnemigo ataqueScript;
+    public UnidadEnemigo unidad;
+
+    float escalaX;
+    // Start is called before the first frame update
+    void Start()
+    {
+        player = GameObject.FindGameObjectWithTag("Player");
+        escalaX = gameObject.transform.localScale.x;
+
+        velocidadInicialX = velocidadMovimientoX;
+        velocidadInicialY = velocidadMovimientoY;
+    }
+
+    // Update is called once per frame
+    void Update()
+    {
+        //distanciaPlayer = Vector3.Distance(gameObject.transform.position, player.transform.position);
+        // print(Mathf.Abs(player.transform.position.x - transform.position.x));
+        distanciaPlayerX = Mathf.Abs(player.transform.position.x - transform.position.x);
+        distanciaPlayerY = Mathf.Abs(player.transform.position.y - transform.position.y);
+
+        if (activarse == true)
+        {
+            if(unidad.vivo == true)
+            {
+
+                if (moverse == true)
+                {
+
+                    //Movimiento
+                    if (distanciaPlayerX > 1.5f)
+                    {
+
+                        transform.position = Vector2.MoveTowards(gameObject.transform.position, new Vector2(player.transform.position.x, gameObject.transform.position.y), velocidadMovimientoX * Time.deltaTime);
+
+                    }
+
+                    if (distanciaPlayerY > 0.3f)
+                    {
+
+                        transform.position = Vector2.MoveTowards(gameObject.transform.position, new Vector2(transform.position.x, player.transform.position.y), velocidadMovimientoY * Time.deltaTime);
+
+                    }
+
+
+                    if (transform.position.x < player.transform.position.x)
+                    {
+                        gameObject.transform.localScale = new Vector3(-escalaX, gameObject.transform.localScale.y, 1);
+                    }
+                    else
+                    {
+                        gameObject.transform.localScale = new Vector3(escalaX, gameObject.transform.localScale.y, 1);
+                    }
+
+
+                }
+
+                // Ataque
+                if (distanciaPlayerX <= 1.5f && distanciaPlayerY <= 0.3f)
+                {
+                    if (atacar == true)
+                    {
+                        Ataque();
+
+                    }
+                }
+
+
+
+
+                //recibir daño
+                if(unidad.golpeRecibido == true)
+                {
+                    StartCoroutine(DañoRecibido(0.5f));
+
+                    unidad.golpeRecibido = false;
+                }
+
+
+            }
+            else
+            {
+                if(activarMuerte == true)
+                {
+                    print("muerto");
+                    Destroy(gameObject);
+                    activarMuerte = false;
+                }
+               
+            }
+                
+
+        }        
+    }
+
+    public void Ataque()
+    {
+         print("Ataque enemigo");
+        ataqueScript.atacando = true;
+        atacar = false;
+        moverse = false;        
+        StartCoroutine(ReiniciarAtaque(1,1.5f));
+    }
+
+    IEnumerator ReiniciarAtaque(float timeMov, float timeAtaq)
+    {
+        yield return new WaitForSeconds(timeMov);
+        ataqueScript.atacando = false;
+        moverse = true;
+        yield return new WaitForSeconds(timeAtaq);
+        atacar = true;
+    }
+
+    IEnumerator DañoRecibido(float time)
+    {
+        moverse = false;
+        yield return new WaitForSeconds(time);
+        moverse = true;
+    }
+}
