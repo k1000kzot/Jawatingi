@@ -2688,11 +2688,6 @@ PrefabInstance:
       propertyPath: fadeHabilidadL
       value: 
       objectReference: {fileID: 1073339944}
-    - target: {fileID: 7029691234301866048, guid: be83f360f695a9d45b99ef00a223050b,
-        type: 3}
-      propertyPath: _rangeAttackCooldown
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 7029691234301866049, guid: be83f360f695a9d45b99ef00a223050b,
         type: 3}
       propertyPath: _hearths.Array.data[0]

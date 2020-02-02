@@ -355,7 +355,7 @@ MonoBehaviour:
   _highAttackTimer: 0.7
   _highAttackCooldown: 5
   _rangeAttackTimer: 0.7
-  _rangeAttackCooldown: 20
+  _rangeAttackCooldown: 1
   _atacking: 0
   audioPlayer: {fileID: 7029691234741642454}
   audioCaminar: {fileID: 0}
