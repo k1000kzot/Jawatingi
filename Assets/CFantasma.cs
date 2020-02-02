@@ -40,7 +40,7 @@ public class CFantasma : MonoBehaviour
     {
         player = GameObject.FindGameObjectWithTag("Player");
         escalaX = gameObject.transform.localScale.x;
-
+        
         velocidadInicialX = velocidadMovimientoX;
         velocidadInicialY = velocidadMovimientoY;
 
@@ -122,7 +122,13 @@ public class CFantasma : MonoBehaviour
             }
             else
             {
-                StartCoroutine(DañoRecibido(0.5f));
+                
+                if(activarMuerte == true)
+                {
+                    Muerto();
+                    activarMuerte = false;
+                }
+                
             }
 
         }
@@ -162,12 +168,20 @@ public class CFantasma : MonoBehaviour
         yield return new WaitForSeconds(time);
         moverse = true;
 
-        if (activarMuerte == true)
-        {
-            print("muerto");
-            audioS.PlayOneShot(Muerte);
-            Destroy(gameObject, 1);
-            activarMuerte = false;
-        }
+       
+    }
+
+    void Muerto()
+    {
+        moverse = false;
+        _anim.SetBool("Vivo", false);
+        _anim.SetTrigger("Hitted");
+        
+        
+        collAtaque.enabled = false;
+        print("muerto");
+        audioS.PlayOneShot(Muerte);
+        Destroy(gameObject, 1f);
+        activarMuerte = false;
     }
 }
