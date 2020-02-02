@@ -9534,7 +9534,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4202283899300167999}
-  - component: {fileID: 4202283899300167997}
   - component: {fileID: 4202283899300167998}
   - component: {fileID: 4202283899300167996}
   - component: {fileID: 1971697123}
@@ -9564,27 +9563,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &4202283899300167997
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4202283899300167985}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4d7facd2d073e4a48abac80524c40528, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _sr: {fileID: 4202283900867860778}
-  _offsetY: 0
-  velocidadMovimientoX: 0.5
-  velocidadMovimientoY: 0.5
-  collAtaque: {fileID: 4202283899831962776}
-  ataqueScript: {fileID: 4202283899831962791}
-  unidad: {fileID: 4202283899300167998}
-  Muerte: {fileID: 8300000, guid: 9ad62ec4dd066f947b4c4a55db6f7532, type: 3}
-  ataque: {fileID: 0}
 --- !u!114 &4202283899300167998
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -9758,6 +9736,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _sr: {fileID: 4202283900867860778}
   _anim: {fileID: 338131283}
+  distanciaParaActivarse: 8
   _offsetY: 0
   velocidadMovimientoX: 0.5
   velocidadMovimientoY: 0.5
@@ -9811,7 +9790,7 @@ BoxCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: -1.7, y: 0}
+  m_Offset: {x: -1.7809466, y: 0.040472984}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0, y: 0}
@@ -9822,7 +9801,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 1.2, y: 1}
+  m_Size: {x: 1.3618929, y: 1.080946}
   m_EdgeRadius: 0
 --- !u!114 &4202283899831962791
 MonoBehaviour:

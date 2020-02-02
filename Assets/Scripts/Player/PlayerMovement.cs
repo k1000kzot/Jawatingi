@@ -81,7 +81,22 @@ public class PlayerMovement : MonoBehaviour, IPlayerDamagable
 
     public void OnHit(int dmg)
     {
+        _anim.SetTrigger("GetHit");
+        sp.flipX = false;
         hpmg.LessHP(dmg);
+        _activeCoroutine = StartCoroutine(GettingHitRoutine());
+    }
+
+    public IEnumerator GettingHitRoutine()
+    {
+        SetState(STATE_INMOVIL);
+        rb.velocity = Vector2.zero;
+
+        yield return new WaitForSeconds(0.3f);
+
+        SetState(STATE_NORMAL);
+
+        yield return null;
     }
 
     public void Dead()
@@ -123,21 +138,12 @@ public class PlayerMovement : MonoBehaviour, IPlayerDamagable
             audioCaminar.Stop();
             activarCaminarSonido = true;
         }
-    }
 
-    public void FixedUpdate()
-    {
         if (_state == STATE_INMOVIL)
             return;
 
         else if (_state == STATE_NORMAL)
         {
-            float x = Input.GetAxis("Horizontal");
-            float y = Input.GetAxis("Vertical");
-            float xRaw = Input.GetAxisRaw("Horizontal");
-            float yRaw = Input.GetAxisRaw("Vertical");
-            Vector2 dir = new Vector2(xRaw, yRaw);
-
             Walk(dir);
 
             if (dir.x > 0)

@@ -4,8 +4,15 @@ using UnityEngine;
 
 public class MainCamera : MonoBehaviour
 {
+    private static int STATE_NORMAL = 0;
+    private static int STATE_LOCKED = 1;
+
     public Transform _target;
     public Vector3 _targetOffset;
+    public Vector3 _targetOffset2;
+
+    public CCheckTrigger _startTrigger1;
+    public CCheckTrigger _startTrigger2;
 
     private Vector3 _desiredPos;
 
@@ -17,9 +24,38 @@ public class MainCamera : MonoBehaviour
     bool cambioCameras = true;
     public GameObject interfaceFantasmal;
 
-    public void FixedUpdate()
+    public int _state;
+
+    public void Awake()
     {
-        BasicMovment();
+        SetState(STATE_LOCKED);
+    }
+
+    public void LateUpdate()
+    {
+        transform.position = _desiredPos;
+    }
+
+    public void SetState(int aState)
+    {
+        _startTrigger1.UnCheked();
+        _startTrigger2.UnCheked();
+
+        _state = aState;
+    }
+
+    public void ManagingTriggers()
+    {
+
+    }
+
+    public void Update()
+    {
+        if (_state == STATE_NORMAL)
+            BasicMovment();
+
+        else if (_state == STATE_LOCKED)
+            LockedMovment();
 
         if (Input.GetKeyDown(KeyCode.Space))
         {
@@ -34,10 +70,6 @@ public class MainCamera : MonoBehaviour
         }
     }
 
-    public void LateUpdate()
-    {
-        transform.position = _desiredPos;
-    }
 
     public void BasicMovment()
     {
@@ -45,9 +77,20 @@ public class MainCamera : MonoBehaviour
         _desiredPos = Vector3.Lerp(this.transform.position, _desiredPos, _moveTime * Time.deltaTime);
     }
 
+    public void LockedMovment()
+    {
+        _desiredPos = GetTargetPos2();
+        _desiredPos = Vector3.Lerp(this.transform.position, _desiredPos, _moveTime * Time.deltaTime);
+    }
+
     private Vector3 GetTargetPos()
     {
-        return new Vector3(_target.position.x, 0, _target.position.z) + _targetOffset;
+        return new Vector3(_target.position.x, 0, 0) + _targetOffset;
+    }
+
+    private Vector3 GetTargetPos2()
+    {
+        return new Vector3(_target.position.x, 0, _target.position.z) + _targetOffset2;
     }
 
     void CambiarCamara(bool normal)
@@ -56,10 +99,6 @@ public class MainCamera : MonoBehaviour
             cameraNormal.SetActive(normal);
             cameraFantasma.SetActive(!normal);
         GameController.modoFantasmalActivo = !GameController.modoFantasmalActivo;
-
-
-
-
     }
 
 
