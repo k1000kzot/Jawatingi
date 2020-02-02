@@ -9539,6 +9539,7 @@ GameObject:
   - component: {fileID: 4202283899300167996}
   - component: {fileID: 1971697123}
   - component: {fileID: 1382614307}
+  - component: {fileID: 4816114370985359628}
   m_Layer: 8
   m_Name: Fantasma
   m_TagString: Untagged
@@ -9570,7 +9571,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4202283899300167985}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 4d7facd2d073e4a48abac80524c40528, type: 3}
   m_Name: 
@@ -9583,6 +9584,7 @@ MonoBehaviour:
   ataqueScript: {fileID: 4202283899831962791}
   unidad: {fileID: 4202283899300167998}
   Muerte: {fileID: 8300000, guid: 9ad62ec4dd066f947b4c4a55db6f7532, type: 3}
+  ataque: {fileID: 0}
 --- !u!114 &4202283899300167998
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -9742,6 +9744,28 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!114 &4816114370985359628
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4202283899300167985}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f1895ca8cfcf0f84a9310ee0b976ee92, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _sr: {fileID: 4202283900867860778}
+  _anim: {fileID: 338131283}
+  _offsetY: 0
+  velocidadMovimientoX: 0.5
+  velocidadMovimientoY: 0.5
+  collAtaque: {fileID: 4202283899831962776}
+  ataqueScript: {fileID: 4202283899831962791}
+  unidad: {fileID: 4202283899300167998}
+  Muerte: {fileID: 8300000, guid: 9ad62ec4dd066f947b4c4a55db6f7532, type: 3}
+  ataque: {fileID: 0}
 --- !u!1 &4202283899831962778
 GameObject:
   m_ObjectHideFlags: 0

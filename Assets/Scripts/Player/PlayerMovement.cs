@@ -151,7 +151,7 @@ public class PlayerMovement : MonoBehaviour, IPlayerDamagable
 
             }
 
-            if (Input.GetKeyDown(KeyCode.K))
+                if (Input.GetKeyDown(KeyCode.K))
             {
                 AttackLow();
                 audioPlayer.PlayOneShot(golpeClip);
