@@ -6,7 +6,7 @@ public class CCheckTrigger : MonoBehaviour
 {
     public bool _checked = false;
 
-    public void OnTriggerEnter(Collider _playerIsHereTrigger)
+    public void OnTriggerEnter2D(Collider2D _playerIsHereTrigger)
     {
         Debug.Log("entrar entra");
         if (_playerIsHereTrigger.CompareTag("Player"))

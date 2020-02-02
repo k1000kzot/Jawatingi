@@ -31,6 +31,7 @@ public class CEndRoutine : MonoBehaviour
         _title.alpha = 0;
 
         SetState(STATE_FADEIN);
+        CTransitionManager.Inst.SetFadeOutFlag();
     }
 
     public void SetState(int aState)

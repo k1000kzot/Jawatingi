@@ -4,6 +4,10 @@ using UnityEngine;
 
 public class CLevelManager : MonoBehaviour
 {
+    public CCheckTrigger _gameFinished;
+
+    public bool _finished = false;
+
     public static CLevelManager Inst
     {
         get
@@ -32,6 +36,28 @@ public class CLevelManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+        if (_gameFinished._checked == true && _finished == false)
+        {
+            Debug.Log("termino el game");
+            _finished = true;
+            StartCoroutine(EndingRoutine());
+        }
+    }
+
+    public IEnumerator EndingRoutine()
+    {
+        yield return new WaitForSeconds(0.7f);
+
+        CTransitionManager.Inst.CreateTransition("Fade");
+
+        while (CTransitionManager.Inst.IsScreenCovered() != true)
+        {
+            yield return null; //esperar 1 frame
+
+            Debug.Log("Nigga");
+        }
+        CSceneManager.Inst.LoadScreen("Final");
+
+        yield return null;
     }
 }
