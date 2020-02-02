@@ -30,6 +30,7 @@ public class CultistaRango : MonoBehaviour
 
     AudioSource audioS;
     public AudioClip Muerte;
+    
     float escalaX;
     // Start is called before the first frame update
     void Start()
